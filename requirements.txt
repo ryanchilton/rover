@@ -1,1 +1,12 @@
 smbus
+Adafruit-Blinka
+adafruit-circuitpython-motor
+Adafruit-PlatformDetect
+Adafruit-PureIO
+Jetson.GPIO
+pyftdi
+pyserial
+pyusb
+setuptools
+smbus
+
