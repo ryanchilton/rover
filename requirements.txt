@@ -3,6 +3,8 @@ Adafruit-Blinka
 adafruit-circuitpython-motor
 Adafruit-PlatformDetect
 Adafruit-PureIO
+Adafruit_MotorHat
+adafruit-circuitpython-motorkit
 Jetson.GPIO
 pyftdi
 pyserial
