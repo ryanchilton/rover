@@ -11,4 +11,4 @@ pyserial
 pyusb
 setuptools
 smbus
-
+notebook
