@@ -1,7 +1,8 @@
 import board
 import math
-from .DriveWheel import DriveWheel
-from .PlatformEffort import PlatformEffort
+from .drive_wheel import DriveWheel
+from .drive_effort import DriveEffort
+from .motion_effort import MotionEffort
 
 class MecanumPlatform:
     def __init__(self):
@@ -19,15 +20,18 @@ class MecanumPlatform:
         self.wheel_bl.setSpeed(0)
         self.wheel_br.setSpeed(0)
         
-    def computeTranslationEffort(self, angle_rad, effort):
+    def computeTranslationEffort(self, x_effort, y_effort):
         roller_angle = math.pi/4.0
         
-        fl = math.cos(angle_rad - roller_angle) * effort
-        fr = math.cos(angle_rad + roller_angle) * effort
-        bl = math.cos(angle_rad + roller_angle) * effort
-        br = math.cos(angle_rad - roller_angle) * effort
+        effort_angle = math.atan2(y_effort, x_effort)
+        effort_magnitude = math.sqrt(x_effort**2 + y_effort**2)
         
-        return PlatformEffort(effort_fl = fl, effort_fr = fr, effort_bl = bl, effort_br = br)
+        fl = math.cos(effort_angle - roller_angle) * effort_magnitude
+        fr = math.cos(effort_angle + roller_angle) * effort_magnitude
+        bl = math.cos(effort_angle + roller_angle) * effort_magnitude
+        br = math.cos(effort_angle - roller_angle) * effort_magnitude
+        
+        return DriveEffort(effort_fl = fl, effort_fr = fr, effort_bl = bl, effort_br = br)
     
     def computeRotationEffort(self, effort):
         # postive in CW direction
@@ -36,7 +40,7 @@ class MecanumPlatform:
         bl = effort
         br = -effort
         
-        return PlatformEffort(effort_fl = fl, effort_fr = fr, effort_bl = bl, effort_br = br)
+        return DriveEffort(effort_fl = fl, effort_fr = fr, effort_bl = bl, effort_br = br)
 
         
     def translate(self, angle_rad, effort):
@@ -49,9 +53,9 @@ class MecanumPlatform:
         platform_effort = self.computeRotationEffort(effort)
         self.execute(platform_effort)
         
-    def twist(self, linear_direction, linear_effort, rotational_effort):
-        eff1 = self.computeTranslationEffort(linear_direction, linear_effort)
-        eff2 = self.computeRotationEffort(rotational_effort)
+    def twist(self, motion_effort):
+        eff1 = self.computeTranslationEffort(motion_effort.linear_x, motion_effort.linear_y)
+        eff2 = self.computeRotationEffort(motion_effort.rotational_z)
         
         superposition = eff1 + eff2
         superposition.normalize()
