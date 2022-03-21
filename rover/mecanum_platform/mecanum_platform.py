@@ -43,8 +43,8 @@ class MecanumPlatform:
         return DriveEffort(effort_fl = fl, effort_fr = fr, effort_bl = bl, effort_br = br)
 
         
-    def translate(self, angle_rad, effort):
-        platform_effort = self.computeTranslationEffort(angle_rad, effort)
+    def translate(self, x_effort, y_effort):
+        platform_effort = self.computeTranslationEffort(x_effort, y_effort)
         self.execute(platform_effort)
         
     
