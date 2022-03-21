@@ -1,7 +1,8 @@
+packaging
 smbus
 Adafruit-Blinka
 adafruit-circuitpython-motor
-Adafruit-PlatformDetect
+Adafruit-PlatformDetect==3.19.5
 Adafruit-PureIO
 Adafruit_MotorHat
 adafruit-circuitpython-motorkit
