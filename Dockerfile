@@ -1,11 +1,7 @@
-FROM nvcr.io/nvidia/l4t-base:r32.6.1
+FROM rkchil/jetson_nano_ros:1.0
 
 RUN apt-get -y update
 #RUN apt-get -y upgrade
-
-RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York apt-get install -y python3-venv build-essential libhdf5-dev python3-dev vim python-rospy
-
-RUN apt-get install python3-venv
 
 COPY rover /rover
 

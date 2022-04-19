@@ -1,0 +1,14 @@
+FROM nvcr.io/nvidia/l4t-base:r32.6.1
+
+RUN apt-get -y update
+#RUN apt-get -y upgrade
+
+RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York apt-get install -y curl python3-venv build-essential libhdf5-dev python3-dev vim
+
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list'
+
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc |  apt-key add -
+
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York apt-get install -y ros-melodic-ros-base
