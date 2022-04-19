@@ -1,6 +1,6 @@
 import time
 import math
-from Platform import Platform
+from mecanum_platform import MecanumPlatform
 
 platform = Platform()
 
