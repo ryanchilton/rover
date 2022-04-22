@@ -10,3 +10,7 @@ nvidia Jetson + camera + omni-directional platform
 * enable buildx in docker by enabling experimental mode
 * install qemu for arm64
 * run this to register qemu interpreters: "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes"
+* run this to cross build: docker buildx build --platform linux/arm64 -t <name:version> -f Dockerfile .
+
+# Visualization
+* https://github.com/dheera/rosboard
