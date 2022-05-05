@@ -12,5 +12,7 @@ nvidia Jetson + camera + omni-directional platform
 * run this to register qemu interpreters: "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes"
 * run this to cross build: docker buildx build --platform linux/arm64 -t <name:version> -f Dockerfile .
 
+* Ran into this error and solution: https://forums.developer.nvidia.com/t/docker-isnt-working-after-apt-upgrade/195213/6
+
 # Visualization
 * https://github.com/dheera/rosboard
