@@ -1,4 +1,4 @@
-FROM rkchil/jetson_nano_ros:3.0
+FROM rkchil/jetson_nano_ros:5.0
 
 RUN apt-get -y update
 #RUN apt-get -y upgrade
