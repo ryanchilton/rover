@@ -10,9 +10,12 @@ nvidia Jetson + camera + omni-directional platform
 * enable buildx in docker by enabling experimental mode
 * install qemu for arm64
 * run this to register qemu interpreters: "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes"
-* run this to cross build: docker buildx build --platform linux/arm64 -t <name:version> -f Dockerfile .
-
+* run this to cross build: docker buildx build --platform linux/arm64 -t <name:version> -f Dockerfile r
+* If compiling CUDA code, make sure to enable access to the CUDA compiler (nvcc) when running docker build: https://github.com/dusty-nv/jetson-containers#docker-default-runtime
 * Ran into this error and solution: https://forums.developer.nvidia.com/t/docker-isnt-working-after-apt-upgrade/195213/6
+
+# Remote camera stream
+* gst-launch-1.0 -v udpsrc port=1234  caps = "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" !  rtph264depay ! decodebin ! videoconvert ! autovideosink 
 
 # Visualization
 * https://github.com/dheera/rosboard
