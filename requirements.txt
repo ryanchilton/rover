@@ -9,6 +9,5 @@ pyftdi
 pyserial
 pyusb
 setuptools
-smbus
 notebook
 ipywidgets
