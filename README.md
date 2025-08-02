@@ -17,5 +17,15 @@ nvidia Jetson + camera + omni-directional platform
 # Remote camera stream
 * gst-launch-1.0 -v udpsrc port=1234  caps = "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" !  rtph264depay ! decodebin ! videoconvert ! autovideosink 
 
-# Visualization
-* https://github.com/dheera/rosboard
+# Testing
+## On robot
+```
+./run_docker.sh
+jupyter notebook --allow-root
+```
+
+## On remote computer
+```
+ssh -N -f -L localhost:8888:localhost:8888 rover@192.168.4.97
+```
+then open localhost:8888 in browser
