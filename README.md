@@ -10,7 +10,10 @@ nvidia Jetson + camera + omni-directional platform
 * enable buildx in docker by enabling experimental mode
 * install qemu for arm64
 * run this to register qemu interpreters: "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes"
-* run this to cross build: docker buildx build --platform linux/arm64 -t <name:version> -f Dockerfile r
+* run this to cross build: 
+```
+docker buildx build --platform linux/arm64  --builder primary -t rkchil/rover:7.0 -f Dockerfile .
+```
 * If compiling CUDA code, make sure to enable access to the CUDA compiler (nvcc) when running docker build: https://github.com/dusty-nv/jetson-containers#docker-default-runtime
 * Ran into this error and solution: https://forums.developer.nvidia.com/t/docker-isnt-working-after-apt-upgrade/195213/6
 
@@ -29,3 +32,6 @@ jupyter notebook --allow-root
 ssh -N -f -L localhost:8888:localhost:8888 rover@192.168.4.97
 ```
 then open localhost:8888 in browser
+
+# Notes
+Jetson has OS: nvidia-l4t-core	32.7.1-20220219090432
