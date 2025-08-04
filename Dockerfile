@@ -8,14 +8,12 @@ RUN apt-get -y update
 # needed for jetson-utils/display
 #RUN apt-get install -y libglew-dev
 
-# install python dependenies
-COPY rover /rover
-
-WORKDIR /rover
-
 # Note: Don't use python venv because ros2 is installed in the system python
 COPY requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
  
+# install python dependenies
+COPY rover /rover
 
+WORKDIR /rover
