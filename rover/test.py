@@ -2,7 +2,7 @@ import time
 import math
 from mecanum_platform import MecanumPlatform
 
-platform = Platform()
+platform = MecanumPlatform()
 
 for i in range (1,36):
     platform.translate(angle_rad = i*10 * math.pi/180.0, effort = 0.6)
