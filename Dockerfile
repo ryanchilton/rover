@@ -1,4 +1,7 @@
-FROM rkchil/jetson_nano_ros:6.0
+FROM dustynv/ros:humble-ros-core-l4t-r32.7.1
+
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+# RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
 
 RUN apt-get -y update
 
@@ -10,9 +13,7 @@ COPY rover /rover
 
 WORKDIR /rover
 
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
+# Note: Don't use python venv because ros2 is installed in the system python
 COPY requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt

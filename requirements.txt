@@ -1,7 +1,7 @@
 packaging
 smbus
-Adafruit-Blinka
-Adafruit-PlatformDetect==3.19.5
+Adafruit-Blinka==3.10.0
+Adafruit-PlatformDetect
 Adafruit-PureIO
 Adafruit_MotorHat
 Jetson.GPIO
