@@ -14,12 +14,12 @@ class TeleopInterface(Node):
         self.platform = robot_interface
 
     def joy_callback(self, msg):
-        self.print_controller_state(msg)
+        # self.print_controller_state(msg)
         # Process joystick input and control the platform
         effort = MotionEffort(
             linear_x=msg.axes[3],  # Forward/backward
             linear_y=-msg.axes[2],  # Left/right
-            rotational_z=msg.axes[0]  # Rotation
+            rotational_z=-msg.axes[0]  # Rotation
         )
         self.platform.twist(effort)
 
