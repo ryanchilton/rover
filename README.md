@@ -24,12 +24,13 @@ docker buildx build --platform linux/arm64  --builder primary -t rkchil/rover:7.
 ## On robot
 ```
 ./run_docker.sh
-jupyter notebook --allow-root
+python main.py
 ```
 
 ## On remote computer
 ```
-ssh -N -f -L localhost:8888:localhost:8888 rover@192.168.4.97
+docker run --rm --privileged --network=host -it rkchil/controller:latest bash
+ros2 run joy game_controller_node --ros-args -p deadzone:=0.2
 ```
 then open localhost:8888 in browser
 
